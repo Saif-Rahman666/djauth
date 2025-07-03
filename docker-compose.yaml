@@ -12,3 +12,12 @@ services:
     volumes:
       - ./postgres/pgdata/:/var/lib/postgresql/data
     restart: on-failure    
+
+  api:
+    build:
+    container name: api
+    command: sh -c "gunicorn --bind 0.0.0.0:8000 --workers=4 core.wsgi --reload"
+    env_file:
+      - .env
+    ports: 
+      - 8000:8000    
