@@ -20,4 +20,9 @@ services:
     env_file:
       - .env
     ports: 
-      - 8000:8000    
+      - 8000:8000 
+    volumes:
+      - ./app
+    depends_on:
+      - postgres
+    restart: on_failure         
